@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-import http from "http";
-import { app } from "./server.js";
+import { app } from "./server";
 
 // const server = http.createServer((req, res) => {
 //     if (req.method === 'GET' && req.url === '/') {
