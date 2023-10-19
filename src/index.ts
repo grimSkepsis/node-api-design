@@ -1,5 +1,6 @@
 import { app } from "./server";
-
+import * as dotenv from "dotenv";
+dotenv.config();
 // const server = http.createServer((req, res) => {
 //     if (req.method === 'GET' && req.url === '/') {
 //         res.statusCode = 200;
