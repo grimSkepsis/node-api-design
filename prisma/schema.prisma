@@ -49,10 +49,11 @@ model Update {
 }
 
 model UpdatePoint {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String   @db.VarChar(255)
-  updateId  String
-  update    Update   @relation(fields: [updateId], references: [id])
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String   @db.VarChar(255)
+  description String
+  updateId    String
+  update      Update   @relation(fields: [updateId], references: [id])
 }

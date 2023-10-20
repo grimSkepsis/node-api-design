@@ -1,5 +1,12 @@
 import { Router } from "express";
-
+import { body, validationResult } from "express-validator";
+import {
+  errorHandler,
+  postUpdatePointValidator,
+  postUpdateValidator,
+  putUpdatePointValidator,
+  putUpdateValidator,
+} from "./modules/middleware";
 const router = Router();
 
 /**
@@ -18,14 +25,19 @@ router.get("/product/:id", (req, res) => {
 });
 
 // CREATE a new product
-router.post("/product", (req, res) => {
+router.post("/product", body("name").isString(), errorHandler, (req, res) => {
   // TODO: Implement handler
 });
 
 // UPDATE an existing product by ID
-router.put("/product/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.put(
+  "/product/:id",
+  body("name").isString(),
+  errorHandler,
+  (req, res) => {
+    res.end(`Hello World (product put)${req.shhh}!}`);
+  }
+);
 
 // DELETE an existing product by ID
 router.delete("/product/:id", (req, res) => {
@@ -47,12 +59,12 @@ router.get("/update/:id", (req, res) => {
 });
 
 // CREATE a new update
-router.post("/update", (req, res) => {
+router.post("/update", postUpdateValidator, errorHandler, (req, res) => {
   // TODO: Implement handler
 });
 
 // UPDATE an existing update by ID
-router.put("/update/:id", (req, res) => {
+router.put("/update/:id", putUpdateValidator, errorHandler, (req, res) => {
   // TODO: Implement handler
 });
 
@@ -76,14 +88,24 @@ router.get("/updatepoint/:id", (req, res) => {
 });
 
 // CREATE a new updatepoint
-router.post("/updatepoint", (req, res) => {
-  // TODO: Implement handler
-});
+router.post(
+  "/updatepoint",
+  postUpdatePointValidator,
+  errorHandler,
+  (req, res) => {
+    // TODO: Implement handler
+  }
+);
 
 // UPDATE an existing updatepoint by ID
-router.put("/updatepoint/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.put(
+  "/updatepoint/:id",
+  putUpdatePointValidator,
+  errorHandler,
+  (req, res) => {
+    // TODO: Implement handler
+  }
+);
 
 // DELETE an existing updatepoint by ID
 router.delete("/updatepoint/:id", (req, res) => {
