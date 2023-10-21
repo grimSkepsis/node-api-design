@@ -4,7 +4,17 @@ import morgan from "morgan";
 import cors from "cors";
 import { protect } from "./modules/auth";
 import { createNewUser, signinUser } from "./handlers/user";
+import { errorHandler } from "./modules/middleware";
 export const app = express();
+
+// catches and handles unandles sync and async errors
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled Rejection at:", reason);
+});
+
+process.on("uncaughtException", (error) => {
+  console.log("Uncaught Exception:", error.stack || error);
+});
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -27,3 +37,4 @@ app.use("/api", protect, router);
 app.post("/user", createNewUser);
 
 app.post("/signin", signinUser);
+app.use(errorHandler);

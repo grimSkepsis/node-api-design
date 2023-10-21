@@ -102,4 +102,6 @@ router.put(
 // DELETE an existing updatepoint by ID
 router.delete("/updatepoint/:id", deleteUpdatePoint);
 
+// router.use(errorHandler);
+
 export default router;
