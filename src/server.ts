@@ -5,6 +5,7 @@ import cors from "cors";
 import { protect } from "./modules/auth";
 import { createNewUser, signinUser } from "./handlers/user";
 import { errorHandler } from "./modules/middleware";
+import { body } from "express-validator";
 export const app = express();
 
 // catches and handles unandles sync and async errors
@@ -34,7 +35,19 @@ app.get("/", (req, res) => {
 
 app.use("/api", protect, router);
 
-app.post("/user", createNewUser);
+app.post(
+  "/user",
+  body("username").isString(),
+  body("password").isString(),
+  errorHandler,
+  createNewUser
+);
 
-app.post("/signin", signinUser);
+app.post(
+  "/signin",
+  body("username").isString(),
+  body("password").isString(),
+  errorHandler,
+  signinUser
+);
 app.use(errorHandler);

@@ -27,13 +27,13 @@ export const signinUser = async (req, res, next) => {
       },
     });
     if (!user) {
-      const error = new Error("User not found");
-      res.statusCode = 404;
+      const error = new Error("Unauthorized");
+      res.statusCode = 401;
       throw error;
     }
     const valid = await comparePassword(password, user.password);
     if (!valid) {
-      const error = new Error("Invalid password");
+      const error = new Error("Unauthorized");
       res.statusCode = 401;
       throw error;
     }
