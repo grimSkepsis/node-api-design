@@ -7,6 +7,27 @@ import {
   putUpdatePointValidator,
   putUpdateValidator,
 } from "./modules/middleware";
+import {
+  createProduct,
+  deleteProduct,
+  getProductById,
+  getProducts,
+  updateProduct,
+} from "./handlers/product";
+import {
+  createUpdate,
+  deleteUpdate,
+  getUpdateById,
+  getUpdates,
+  updateUpdate,
+} from "./handlers/update";
+import {
+  createUpdatePoint,
+  deleteUpdatePoint,
+  getUpdatePointById,
+  getUpdatePoints,
+  updateUpdatePoint,
+} from "./handlers/updatePoint";
 const router = Router();
 
 /**
@@ -14,87 +35,60 @@ const router = Router();
  */
 
 // GET all products
-router.get("/product", (req, res) => {
-  // TODO: Implement handler
-  res.end(`Hello World (product)${req.shhh}!}`);
-});
+router.get("/product", getProducts);
 
 // GET a single product by ID
-router.get("/product/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.get("/product/:id", getProductById);
 
 // CREATE a new product
-router.post("/product", body("name").isString(), errorHandler, (req, res) => {
-  // TODO: Implement handler
-});
+router.post("/product", body("name").isString(), errorHandler, createProduct);
 
 // UPDATE an existing product by ID
 router.put(
   "/product/:id",
   body("name").isString(),
   errorHandler,
-  (req, res) => {
-    res.end(`Hello World (product put)${req.shhh}!}`);
-  }
+  updateProduct
 );
 
 // DELETE an existing product by ID
-router.delete("/product/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.delete("/product/:id", deleteProduct);
 
 /**
  * Updates
  */
 
 // GET all updates
-router.get("/update", (req, res) => {
-  // TODO: Implement handler
-});
+router.get("/update", getUpdates);
 
 // GET a single update by ID
-router.get("/update/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.get("/update/:id", getUpdateById);
 
 // CREATE a new update
-router.post("/update", postUpdateValidator, errorHandler, (req, res) => {
-  // TODO: Implement handler
-});
+router.post("/update", postUpdateValidator, errorHandler, createUpdate);
 
 // UPDATE an existing update by ID
-router.put("/update/:id", putUpdateValidator, errorHandler, (req, res) => {
-  // TODO: Implement handler
-});
+router.put("/update/:id", putUpdateValidator, errorHandler, updateUpdate);
 
 // DELETE an existing update by ID
-router.delete("/update/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.delete("/update/:id", deleteUpdate);
 
 /**
  * Updatepoints
  */
 
 // GET all updatepoints
-router.get("/updatepoint", (req, res) => {
-  // TODO: Implement handler
-});
+router.get("/updatepoint", getUpdatePoints);
 
 // GET a single updatepoint by ID
-router.get("/updatepoint/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.get("/updatepoint/:id", getUpdatePointById);
 
 // CREATE a new updatepoint
 router.post(
   "/updatepoint",
   postUpdatePointValidator,
   errorHandler,
-  (req, res) => {
-    // TODO: Implement handler
-  }
+  createUpdatePoint
 );
 
 // UPDATE an existing updatepoint by ID
@@ -102,14 +96,10 @@ router.put(
   "/updatepoint/:id",
   putUpdatePointValidator,
   errorHandler,
-  (req, res) => {
-    // TODO: Implement handler
-  }
+  updateUpdatePoint
 );
 
 // DELETE an existing updatepoint by ID
-router.delete("/updatepoint/:id", (req, res) => {
-  // TODO: Implement handler
-});
+router.delete("/updatepoint/:id", deleteUpdatePoint);
 
 export default router;
